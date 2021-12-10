@@ -10,9 +10,6 @@ import UIKit
 class ViewController: UIViewController {
     @IBOutlet var resultOfSettingsView: UIView!
     
-    @IBOutlet var redLabel: UILabel!
-    @IBOutlet var greenLabel: UILabel!
-    @IBOutlet var blueLabel: UILabel!
     
     @IBOutlet var redValueLabel: UILabel!
     @IBOutlet var greenValueLabel: UILabel!
@@ -22,14 +19,15 @@ class ViewController: UIViewController {
     @IBOutlet var greenSlider: UISlider!
     @IBOutlet var blueSlider: UISlider!
     
-    private let maximumSlidersValue: Float = 100
+    private let maximumSlidersValue: Float = 255
     private let minimumSlidersValue: Float = 1
     
+   
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        resultOfSettingsView.layer.cornerRadius = 10
+        resultOfSettingsView.layer.cornerRadius = 30
         
         redSlider.minimumValue = minimumSlidersValue
         greenSlider.minimumValue = minimumSlidersValue
@@ -39,9 +37,9 @@ class ViewController: UIViewController {
         greenSlider.maximumValue = maximumSlidersValue
         blueSlider.maximumValue = maximumSlidersValue
         
-        redSlider.value = Float.random(in: 1...100)
-        greenSlider.value = Float.random(in: 1...100)
-        blueSlider.value = Float.random(in: 1...100)
+        redSlider.value = Float.random(in: minimumSlidersValue...maximumSlidersValue)
+        greenSlider.value = Float.random(in: minimumSlidersValue...maximumSlidersValue)
+        blueSlider.value = Float.random(in: minimumSlidersValue...maximumSlidersValue)
         
         redValueLabel.text = String(Int(redSlider.value))
         greenValueLabel.text = String(Int(greenSlider.value))
@@ -52,24 +50,31 @@ class ViewController: UIViewController {
         blueSlider.maximumTrackTintColor = .blue
         
         
+        resultOfSettingsView.backgroundColor = UIColor(red: CGFloat(redSlider.value / 255), green: CGFloat(greenSlider.value / 255), blue: CGFloat(blueSlider.value / 255), alpha: 1)
+        
 
     
     }
 
     @IBAction func redSliderAction() {
         redValueLabel.text = String(Int(redSlider.value))
+        
+        
+        
     }
     
     
     
     @IBAction func greenSliderAction() {
         greenValueLabel.text = String(Int(greenSlider.value))
+        
     }
     
     
     
     @IBAction func blueSliferAction() {
         blueValueLabel.text = String(Int(blueSlider.value))
+        
     }
     
 }
