@@ -19,63 +19,65 @@ class ViewController: UIViewController {
     @IBOutlet var greenSlider: UISlider!
     @IBOutlet var blueSlider: UISlider!
     
-    private let maximumSlidersValue: Float = 255
-    private let minimumSlidersValue: Float = 1
     
-   
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
         resultOfSettingsView.layer.cornerRadius = 30
         
-        redSlider.minimumValue = minimumSlidersValue
-        greenSlider.minimumValue = minimumSlidersValue
-        blueSlider.minimumValue = minimumSlidersValue
+        minValuesOfSliders()
+        maxValuesOfSliders()
         
-        redSlider.maximumValue = maximumSlidersValue
-        greenSlider.maximumValue = maximumSlidersValue
-        blueSlider.maximumValue = maximumSlidersValue
+        redSlider.value = 255
+        greenSlider.value = 19
+        blueSlider.value = 10
         
-        redSlider.value = Float.random(in: minimumSlidersValue...maximumSlidersValue)
-        greenSlider.value = Float.random(in: minimumSlidersValue...maximumSlidersValue)
-        blueSlider.value = Float.random(in: minimumSlidersValue...maximumSlidersValue)
+        sliderAction()
+        maxTintColor()
+        minTintColor()
         
-        redValueLabel.text = String(Int(redSlider.value))
-        greenValueLabel.text = String(Int(greenSlider.value))
-        blueValueLabel.text = String(Int(blueSlider.value))
         
-        redSlider.maximumTrackTintColor = .red
-        greenSlider.maximumTrackTintColor = .green
-        blueSlider.maximumTrackTintColor = .blue
         
+    
+    }
+
+    @IBAction func sliderAction() {
+        redValueLabel.text = String(redSlider.value.rounded(.toNearestOrEven))
+        greenValueLabel.text = String(greenSlider.value.rounded(.toNearestOrEven))
+        blueValueLabel.text = String(blueSlider.value.rounded(.toNearestOrEven))
         
         resultOfSettingsView.backgroundColor = UIColor(red: CGFloat(redSlider.value / 255), green: CGFloat(greenSlider.value / 255), blue: CGFloat(blueSlider.value / 255), alpha: 1)
         
-
+        }
     
-    }
-
-    @IBAction func redSliderAction() {
+    private func textLabels() {
         redValueLabel.text = String(Int(redSlider.value))
-        
-        
-        
-    }
-    
-    
-    
-    @IBAction func greenSliderAction() {
         greenValueLabel.text = String(Int(greenSlider.value))
-        
-    }
-    
-    
-    
-    @IBAction func blueSliferAction() {
         blueValueLabel.text = String(Int(blueSlider.value))
-        
     }
     
+    private func minValuesOfSliders() {
+        redSlider.minimumValue = 0
+        greenSlider.minimumValue = 0
+        blueSlider.minimumValue = 0
+    }
+    
+    private func maxValuesOfSliders() {
+        redSlider.maximumValue = 255
+        greenSlider.maximumValue = 255
+        blueSlider.maximumValue = 255
+    }
+    
+    private func maxTintColor() {
+        redSlider.maximumTrackTintColor = .white
+        greenSlider.maximumTrackTintColor = .white
+        blueSlider.maximumTrackTintColor = .white
+    }
+    
+    private func minTintColor() {
+        redSlider.minimumTrackTintColor = . red
+        greenSlider.minimumTrackTintColor = .green
+        blueSlider.minimumTrackTintColor = .blue
+    }
 }
 
