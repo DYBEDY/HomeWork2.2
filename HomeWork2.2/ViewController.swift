@@ -50,6 +50,8 @@ class ViewController: UIViewController {
         
         }
     
+    //MARK: - Private methods
+    
     private func textLabels() {
         redValueLabel.text = String(Int(redSlider.value))
         greenValueLabel.text = String(Int(greenSlider.value))
