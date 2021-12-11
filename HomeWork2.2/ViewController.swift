@@ -53,9 +53,9 @@ class ViewController: UIViewController {
     //MARK: - Private methods
     
     private func textLabels() {
-        redValueLabel.text = String(Int(redSlider.value))
-        greenValueLabel.text = String(Int(greenSlider.value))
-        blueValueLabel.text = String(Int(blueSlider.value))
+        redValueLabel.text = String(redSlider.value.rounded(.toNearestOrEven))
+        greenValueLabel.text = String(greenSlider.value.rounded(.toNearestOrEven))
+        blueValueLabel.text = String(blueSlider.value.rounded(.toNearestOrEven))
     }
     
     private func minValuesOfSliders() {
