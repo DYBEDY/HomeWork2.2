@@ -25,7 +25,6 @@ class ViewController: UIViewController {
         
         resultOfSettingsView.layer.cornerRadius = 30
         
-        minValuesOfSliders()
         maxValuesOfSliders()
         
         redSlider.value = 255
@@ -35,18 +34,15 @@ class ViewController: UIViewController {
         sliderAction()
         maxTintColor()
         minTintColor()
-        
-        
-        
-    
     }
 
     @IBAction func sliderAction() {
-        redValueLabel.text = String(redSlider.value.rounded(.toNearestOrEven))
-        greenValueLabel.text = String(greenSlider.value.rounded(.toNearestOrEven))
-        blueValueLabel.text = String(blueSlider.value.rounded(.toNearestOrEven))
+        textLabels()
         
-        resultOfSettingsView.backgroundColor = UIColor(red: CGFloat(redSlider.value / 255), green: CGFloat(greenSlider.value / 255), blue: CGFloat(blueSlider.value / 255), alpha: 1)
+        resultOfSettingsView.backgroundColor = UIColor(
+            red: CGFloat(redSlider.value / 255),
+            green: CGFloat(greenSlider.value / 255),
+            blue: CGFloat(blueSlider.value / 255), alpha: 1)
         
         }
     
@@ -56,12 +52,6 @@ class ViewController: UIViewController {
         redValueLabel.text = String(redSlider.value.rounded(.toNearestOrEven))
         greenValueLabel.text = String(greenSlider.value.rounded(.toNearestOrEven))
         blueValueLabel.text = String(blueSlider.value.rounded(.toNearestOrEven))
-    }
-    
-    private func minValuesOfSliders() {
-        redSlider.minimumValue = 0
-        greenSlider.minimumValue = 0
-        blueSlider.minimumValue = 0
     }
     
     private func maxValuesOfSliders() {
