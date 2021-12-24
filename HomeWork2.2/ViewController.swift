@@ -31,27 +31,49 @@ class ViewController: UIViewController {
         greenSlider.value = 19
         blueSlider.value = 10
         
-        sliderAction()
+        
         maxTintColor()
         minTintColor()
+        
+        setColor()
+        setValue(for: redValueLabel, greenValueLabel, blueValueLabel)
     }
 
-    @IBAction func sliderAction() {
-        textLabels()
+    @IBAction func sliderAction(_ sender: UISlider) {
+        setColor()
         
-        resultOfSettingsView.backgroundColor = UIColor(
-            red: CGFloat(redSlider.value / 255),
-            green: CGFloat(greenSlider.value / 255),
-            blue: CGFloat(blueSlider.value / 255), alpha: 1)
-        
+        switch sender {
+        case redSlider: setValue(for: redValueLabel)
+        case greenSlider: setValue(for: greenValueLabel)
+        default: setValue(for: blueValueLabel)
+        }
+       
         }
     
     //MARK: - Private methods
     
-    private func textLabels() {
-        redValueLabel.text = String(redSlider.value.rounded(.toNearestOrEven))
-        greenValueLabel.text = String(greenSlider.value.rounded(.toNearestOrEven))
-        blueValueLabel.text = String(blueSlider.value.rounded(.toNearestOrEven))
+    private func setColor() {
+        resultOfSettingsView.backgroundColor = UIColor(
+            red: CGFloat(redSlider.value / 255),
+            green: CGFloat(greenSlider.value / 255),
+            blue: CGFloat(blueSlider.value / 255), alpha: 1)
+    }
+    
+    private func setValue(for labels: UILabel...) {
+        labels.forEach { label in
+            switch label {
+            case redValueLabel:
+                label.text = string(from: redSlider )
+            case greenValueLabel:
+                label.text = string(from: greenSlider)
+            default:
+                label.text = string(from: blueSlider)
+            }
+        }
+    }
+    
+    private func string(from slider: UISlider) -> String {
+        String(format: "%.0f", slider.value )
     }
     
     private func maxValuesOfSliders() {
